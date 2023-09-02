@@ -9,20 +9,24 @@ namespace Scripts.Components.Dialogs
 {
     public class ShowDialogComponent : MonoBehaviour
     {
-        [SerializeField] private Mode _mode;
-        [SerializeField] private DialogData _bound;
-        [SerializeField] private DialogDef _external;
-        [SerializeField] private UnityEvent _onComplete;
+        [SerializeField]
+        private Mode mode;
+        [SerializeField]
+        private DialogData bound;
+        [SerializeField]
+        private DialogDef external;
+        [SerializeField]
+        private UnityEvent onComplete;
 
         private DialogBoxController _dialogBox;
 
         public void Show()
         {
-            _dialogBox = FindDialogController();
-            _dialogBox.ShowDialog(Data, _onComplete);
+            _dialogBox = DialogController();
+            _dialogBox.ShowDialog(Data, onComplete);
         }
 
-        private DialogBoxController FindDialogController()
+        private DialogBoxController DialogController()
         {
             if (_dialogBox != null) return _dialogBox;
 
@@ -44,7 +48,7 @@ namespace Scripts.Components.Dialogs
 
         public void Show(DialogDef def)
         {
-            _external = def;
+            external = def;
             Show();
         }
 
@@ -52,12 +56,12 @@ namespace Scripts.Components.Dialogs
         {
             get
             {
-                switch (_mode)
+                switch (mode)
                 {
                     case Mode.Bound:
-                        return _bound;
+                        return bound;
                     case Mode.External:
-                        return _external.Data;
+                        return external.Data;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

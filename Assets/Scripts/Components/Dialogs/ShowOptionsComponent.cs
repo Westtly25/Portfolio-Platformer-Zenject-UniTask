@@ -5,15 +5,15 @@ namespace Scripts.Components.Dialogs
 {
     public class ShowOptionsComponent : MonoBehaviour
     {
-        [SerializeField] private OptionDialogData _data;
-        private OptionDialogController _dialogBox;
+        [SerializeField] private OptionDialogData data;
+        private OptionDialogController dialogBox;
 
         public void Show()
         {
-            if (_dialogBox == null)
-                _dialogBox = FindObjectOfType<OptionDialogController>();
+            if (dialogBox == null)
+                dialogBox = FindObjectOfType<OptionDialogController>();
 
-            _dialogBox.Show(_data);
+            dialogBox.Show(data);
         }
     }
 }

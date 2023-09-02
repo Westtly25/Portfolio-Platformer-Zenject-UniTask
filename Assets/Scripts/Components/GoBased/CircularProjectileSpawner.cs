@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Scripts.Creatures.Weapons;
 using Scripts.Utils;
@@ -33,20 +32,5 @@ namespace Scripts.Components.GoBased
                 yield return new WaitForSeconds(setting.Delay);
             }
         }
-    }
-
-    [Serializable]
-    public struct CircularProjectileSettings
-    {
-        [SerializeField]
-        private DirectionalProjectile prefab;
-        [SerializeField]
-        private int burstCount;
-        [SerializeField]
-        private float delay;
-
-        public DirectionalProjectile Prefab => prefab;
-        public int BurstCount => burstCount;
-        public float Delay => delay;
     }
 }
