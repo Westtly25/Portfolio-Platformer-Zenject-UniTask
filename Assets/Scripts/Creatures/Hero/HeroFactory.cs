@@ -1,6 +1,5 @@
 ﻿using Zenject;
 using Scripts.AssetManagement;
-using System.Numerics;
 using Cysharp.Threading.Tasks;
 
 namespace Scripts.Creatures.Hero

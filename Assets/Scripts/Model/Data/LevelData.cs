@@ -1,19 +1,20 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Scripts.Model.Definitions.Player;
 using UnityEngine;
+using System.Collections.Generic;
+using Scripts.Model.Definitions.Player;
 
 namespace Scripts.Model.Data
 {
     [Serializable]
     public class LevelData
     {
-        [SerializeField] private List<LevelProgress> _progress;
+        [SerializeField]
+        private List<LevelProgress> progress;
 
         public int GetLevel(StatId id)
         {
-            foreach (var levelProgress in _progress)
+            foreach (var levelProgress in progress)
             {
                 if (levelProgress.Id == id)
                 {
@@ -26,24 +27,11 @@ namespace Scripts.Model.Data
 
         public void LevelUp(StatId id)
         {
-            var progress = _progress.FirstOrDefault(x => x.Id == id);
+            var progress = this.progress.FirstOrDefault(x => x.Id == id);
             if (progress == null)
-                _progress.Add(new LevelProgress(id, 1));
+                this.progress.Add(new LevelProgress(id, 1));
             else
                 progress.Level++;
-        }
-    }
-
-    [Serializable]
-    public class LevelProgress
-    {
-        public StatId Id;
-        public int Level;
-
-        public LevelProgress(StatId id, int level)
-        {
-            Id = id;
-            Level = level;
         }
     }
 }

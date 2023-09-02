@@ -10,6 +10,7 @@ namespace Scripts.Components.Audio
         {
             [SerializeField]
             private string id;
+
             [SerializeField]
             private AudioClip clip;
 

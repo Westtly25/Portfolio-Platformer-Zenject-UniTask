@@ -11,27 +11,6 @@ using Scripts.Components.LevelManegement;
 
 namespace Scripts.Model
 {
-    public class BootstrapInstaller : MonoInstaller
-    {
-
-        public override void InstallBindings()
-        {
-        }
-    }
-
-    public class GameplayInstaller : MonoInstaller
-    {
-        public override void InstallBindings()
-        {
-            Container.BindInterfacesAndSelfTo<CompositeDisposable>()
-                     .FromNew()
-                     .AsSingle()
-                     .NonLazy();
-
-        }
-    }
-
-
     public class GameSession : MonoBehaviour
     {
         [SerializeField]

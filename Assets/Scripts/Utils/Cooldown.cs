@@ -8,6 +8,7 @@ namespace Scripts.Utils
     {
         [SerializeField]
         private float value;
+
         [SerializeField]
         private float timesUp;
 

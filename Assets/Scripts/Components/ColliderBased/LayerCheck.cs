@@ -6,6 +6,7 @@ namespace Scripts.Components.ColliderBased
     {
         [SerializeField]
         protected LayerMask layer;
+
         [SerializeField]
         protected bool isTouchingLayer;
 

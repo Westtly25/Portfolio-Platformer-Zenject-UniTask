@@ -6,7 +6,8 @@ namespace Scripts.Components.LevelManegement
 {
     public class ExitLevelComponent : MonoBehaviour
     {
-        [SerializeField] private string sceneName;
+        [SerializeField]
+        private string sceneName;
 
         public void Exit()
         {

@@ -4,11 +4,9 @@ namespace Scripts.Components.Interactions
 {
     public class DoInteractionComponent : MonoBehaviour
     {
-        public void DoInteraction(GameObject go)
+        public void DoInteraction(GameObject interacted)
         {
-            var interactable = go.GetComponent<InteractableComponent>();
-
-            if (interactable != null)
+            if (interacted.TryGetComponent<InteractableComponent>(out InteractableComponent interactable))
                 interactable.Interact();
         }
     }

@@ -7,20 +7,18 @@ namespace Scripts
     public class ChangeEmissionColor : MonoBehaviour
     {
         [ColorUsage(true, true)] [SerializeField]
-        private Color _color;
+        private Color color;
 
-        private SpriteRenderer _sprite;
+        private SpriteRenderer sprite;
         private static readonly int EmissionColor = Shader.PropertyToID("_Color");
 
         private void Awake()
         {
-            _sprite = GetComponent<SpriteRenderer>();
+            sprite = GetComponent<SpriteRenderer>();
         }
 
         [ContextMenu("Change color")]
-        public void Change()
-        {
-            _sprite.material.SetColor(EmissionColor, _color);
-        }
+        public void Change() =>
+            sprite.material.SetColor(EmissionColor, color);
     }
 }

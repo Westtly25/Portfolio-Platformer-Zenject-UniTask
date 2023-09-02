@@ -8,13 +8,13 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Scripts.AssetManagement
 {
-    public class AssetProvider : IAssetProvider, IInitializable
+    public class AssetProvider : IAssetProvider
     {
         private readonly Dictionary<string, AsyncOperationHandle> completedCashe = new();
         private readonly Dictionary<string, List<AsyncOperationHandle>> handles = new();
 
-        public void Initialize() =>
-            Addressables.InitializeAsync();
+        public async UniTask Initialize() =>
+            await Addressables.InitializeAsync();
 
         public async UniTask<T> Load<T>(AssetReference assetReference) where T : class
         {

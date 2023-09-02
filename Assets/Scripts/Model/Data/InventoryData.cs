@@ -1,18 +1,18 @@
 using System;
-using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 using Scripts.Model.Definitions;
+using System.Collections.Generic;
 using Scripts.Model.Definitions.Repositories;
 using Scripts.Model.Definitions.Repositories.Items;
-using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Scripts.Model.Data
 {
     [Serializable]
     public class InventoryData
     {
-        [SerializeField] private List<InventoryItemData> _inventory = new List<InventoryItemData>();
+        [SerializeField]
+        private List<InventoryItemData> inventory = new();
 
         public delegate void OnInventoryChanged(string id, int value);
 
@@ -40,7 +40,7 @@ namespace Scripts.Model.Data
         public InventoryItemData[] GetAll(params ItemTag[] tags)
         {
             var retValue = new List<InventoryItemData>();
-            foreach (var item in _inventory)
+            foreach (var item in inventory)
             {
                 var itemDef = DefsFacade.I.Items.Get(item.Id);
                 var isAllRequirementsMet = tags.All(x => itemDef.HasTag(x));
@@ -53,14 +53,14 @@ namespace Scripts.Model.Data
 
         private void AddToStack(string id, int value)
         {
-            var isFull = _inventory.Count >= DefsFacade.I.Player.InventorySize;
+            var isFull = inventory.Count >= DefsFacade.I.Player.InventorySize;
             var item = GetItem(id);
             if (item == null)
             {
                 if (isFull) return;
 
                 item = new InventoryItemData(id);
-                _inventory.Add(item);
+                inventory.Add(item);
             }
 
             item.Value += value;
@@ -68,13 +68,13 @@ namespace Scripts.Model.Data
 
         private void AddNonStack(string id, int value)
         {
-            var itemLasts = DefsFacade.I.Player.InventorySize - _inventory.Count;
+            var itemLasts = DefsFacade.I.Player.InventorySize - inventory.Count;
             value = Mathf.Min(itemLasts, value);
 
             for (var i = 0; i < value; i++)
             {
                 var item = new InventoryItemData(id) {Value = 1};
-                _inventory.Add(item);
+                inventory.Add(item);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Scripts.Model.Data
             item.Value -= value;
 
             if (item.Value <= 0)
-                _inventory.Remove(item);
+                inventory.Remove(item);
         }
 
         private void RemoveNonStack(string id, int value)
@@ -113,13 +113,13 @@ namespace Scripts.Model.Data
                 var item = GetItem(id);
                 if (item == null) return;
 
-                _inventory.Remove(item);
+                inventory.Remove(item);
             }
         }
 
         private InventoryItemData GetItem(string id)
         {
-            foreach (var itemData in _inventory)
+            foreach (var itemData in inventory)
             {
                 if (itemData.Id == id)
                     return itemData;
@@ -131,7 +131,7 @@ namespace Scripts.Model.Data
         public int Count(string id)
         {
             var count = 0;
-            foreach (var item in _inventory)
+            foreach (var item in inventory)
             {
                 if (item.Id == id)
                     count += item.Value;
@@ -160,18 +160,6 @@ namespace Scripts.Model.Data
             }
 
             return true;
-        }
-    }
-
-    [Serializable]
-    public class InventoryItemData
-    {
-        [InventoryId] public string Id;
-        public int Value;
-
-        public InventoryItemData(string id)
-        {
-            Id = id;
         }
     }
 }

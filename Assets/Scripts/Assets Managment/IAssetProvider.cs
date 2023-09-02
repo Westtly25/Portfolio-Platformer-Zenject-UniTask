@@ -7,7 +7,7 @@ namespace Scripts.AssetManagement
 {
     public interface IAssetProvider
     {
-        void Initialize();
+        UniTask Initialize();
         Task<GameObject> Instantiate(string path, Vector3 at);
         Task<GameObject> Instantiate(string path);
         UniTask<T> Load<T>(AssetReference monsterDataPrefabReference) where T : class;

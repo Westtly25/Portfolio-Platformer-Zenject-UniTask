@@ -8,14 +8,16 @@ namespace Scripts.Creatures.Mobs
 {
     public class TotemTower : MonoBehaviour
     {
-        [SerializeField] private List<ShootingTrapAI> _traps;
-        [SerializeField] private Cooldown _cooldown;
+        [SerializeField]
+        private List<ShootingTrapAI> traps;
+        [SerializeField]
+        private Cooldown cooldown;
 
         private int _currentTrap;
 
         private void Start()
         {
-            foreach (var shootingTrapAI in _traps)
+            foreach (var shootingTrapAI in traps)
             {
                 shootingTrapAI.enabled = false;
                 var hp = shootingTrapAI.GetComponent<HealthComponent>();
@@ -25,8 +27,8 @@ namespace Scripts.Creatures.Mobs
 
         private void OnTrapDead(ShootingTrapAI shootingTrapAI)
         {
-            var index = _traps.IndexOf(shootingTrapAI);
-            _traps.Remove(shootingTrapAI);
+            var index = traps.IndexOf(shootingTrapAI);
+            traps.Remove(shootingTrapAI);
             if (index < _currentTrap)
             {
                 _currentTrap--;
@@ -35,7 +37,7 @@ namespace Scripts.Creatures.Mobs
 
         private void Update()
         {
-            if (_traps.Count == 0)
+            if (traps.Count == 0)
             {
                 enabled = false;
                 Destroy(gameObject, 1f);
@@ -44,18 +46,18 @@ namespace Scripts.Creatures.Mobs
             var hasAnyTarget = HasAnyTarget();
             if (hasAnyTarget)
             {
-                if (_cooldown.IsReady)
+                if (cooldown.IsReady)
                 {
-                    _traps[_currentTrap].Shoot();
-                    _cooldown.Reset();
-                    _currentTrap = (int) Mathf.Repeat(_currentTrap + 1, _traps.Count);
+                    traps[_currentTrap].Shoot();
+                    cooldown.Reset();
+                    _currentTrap = (int) Mathf.Repeat(_currentTrap + 1, traps.Count);
                 }
             }
         }
 
         private bool HasAnyTarget()
         {
-            foreach (var shootingTrapAI in _traps)
+            foreach (var shootingTrapAI in traps)
             {
                 if (shootingTrapAI.vision.IsTouchingLayer)
                     return true;
