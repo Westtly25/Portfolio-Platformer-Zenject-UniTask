@@ -11,13 +11,14 @@ namespace Scripts.Components.GoBased
 {
     public class RandomSpawner : MonoBehaviour
     {
-        [Header("Spawn bound:")] [SerializeField]
+        [Header("Spawn bound:")]
+        [SerializeField]
         private float _sectorAngle = 60;
 
-        [SerializeField] private float _sectorRotation;
+        [SerializeField] private float sectorRotation;
 
-        [SerializeField] private float _waitTime = 0.1f;
-        [SerializeField] private float _speed = 6;
+        [SerializeField] private float waitTime = 0.1f;
+        [SerializeField] private float speed = 6;
 
         private Coroutine _routine;
 
@@ -41,7 +42,7 @@ namespace Scripts.Components.GoBased
             for (var i = 0; i < particles.Length; i++)
             {
                 Spawn(particles[i]);
-                yield return new WaitForSeconds(_waitTime);
+                yield return new WaitForSeconds(waitTime);
             }
         }
 
@@ -52,7 +53,7 @@ namespace Scripts.Components.GoBased
 
             var randomAngle = Random.Range(0, _sectorAngle);
             var forceVector = AngleToVectorInSector(randomAngle);
-            rigidBody.AddForce(forceVector * _speed, ForceMode2D.Impulse);
+            rigidBody.AddForce(forceVector * speed, ForceMode2D.Impulse);
         }
 
 #if UNITY_EDITOR
@@ -60,7 +61,7 @@ namespace Scripts.Components.GoBased
         {
             var position = transform.position;
 
-            var middleAngleDelta = (180 - _sectorRotation - _sectorAngle) / 2;
+            var middleAngleDelta = (180 - sectorRotation - _sectorAngle) / 2;
             var rightBound = GetUnitOnCircle(middleAngleDelta);
             Handles.DrawLine(position, position + rightBound);
 
@@ -75,7 +76,7 @@ namespace Scripts.Components.GoBased
         
         private Vector2 AngleToVectorInSector(float angle)
         {
-            var angleMiddleDelta = (180 - _sectorRotation - _sectorAngle) / 2;
+            var angleMiddleDelta = (180 - sectorRotation - _sectorAngle) / 2;
             return GetUnitOnCircle(angle + angleMiddleDelta);
         }
 

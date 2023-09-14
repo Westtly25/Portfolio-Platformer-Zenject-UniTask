@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class MetaFlow : MonoBehaviour
+public class MetaFlow : IInitializable
 {
-    // Start is called before the first frame update
-    void Start()
+    public MetaFlow()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize()
     {
-        
     }
 }
