@@ -24,6 +24,9 @@ namespace Scripts.Effects
 
         private void LateUpdate()
         {
+            if (hero == null)
+                return;
+
             var currentPosition = transform.position;
             var deltaX = followTarget.position.x * effectValue;
             transform.position = new Vector3(startX + deltaX, currentPosition.y, currentPosition.z);
