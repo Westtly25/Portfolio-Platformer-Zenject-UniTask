@@ -1,16 +1,16 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 namespace Scripts.UI.LevelsLoader
 {
     public class LevelLoader : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
-        [SerializeField] private float _transitionTime;
+        [SerializeField] private Animator animator;
+        [SerializeField] private float transitionTime;
 
         private static readonly int Enabled = Animator.StringToHash("Enabled");
-        private AsyncOperation _asyncOperation;
+        private AsyncOperation asyncOperation;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void OnAfterSceneLoad()
@@ -35,10 +35,10 @@ namespace Scripts.UI.LevelsLoader
 
         private IEnumerator StartAnimation(string sceneName)
         {
-            _animator.SetBool(Enabled, true);
-            yield return new WaitForSeconds(_transitionTime);
+            animator.SetBool(Enabled, true);
+            yield return new WaitForSeconds(transitionTime);
             SceneManager.LoadScene(sceneName);
-            _animator.SetBool(Enabled, false);
+            animator.SetBool(Enabled, false);
         }
     }
 }
