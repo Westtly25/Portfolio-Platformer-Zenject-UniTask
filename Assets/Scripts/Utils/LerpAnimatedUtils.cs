@@ -6,10 +6,10 @@ namespace Scripts.Utils
 {
     public static class LerpAnimatedUtils
     {
-        public static Coroutine LerpAnimated(this MonoBehaviour behaviour, float start, float end, float time,
+        public static Coroutine LerpAnimated(this MonoBehaviour behavior, float start, float end, float time,
             Action<float> onFrame)
         {
-            return behaviour.StartCoroutine(Animate(start, end, time, onFrame));
+            return behavior.StartCoroutine(Animate(start, end, time, onFrame));
         }
 
         private static IEnumerator Animate(float start, float end, float animationTime, Action<float> onFrame)
