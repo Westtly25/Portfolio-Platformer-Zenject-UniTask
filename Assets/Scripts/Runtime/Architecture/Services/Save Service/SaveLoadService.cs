@@ -2,6 +2,7 @@ using System;
 using Zenject;
 using System.IO;
 using UnityEngine;
+using Assets.Scripts.Shared;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using Assets.Code.Scripts.Runtime.Save_system.Interface;
@@ -94,6 +95,6 @@ namespace Assets.Scripts.Architecture.Services.Save_Service
         }
 
         private string CreateFilePath() =>
-            Application.persistentDataPath + AppFileConfigs.SavesFilesFolder;
+            Application.persistentDataPath + SharedConstants.AppFileConfigs.SavesFilesFolder;
     }
 }
