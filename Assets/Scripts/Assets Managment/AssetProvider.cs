@@ -10,7 +10,7 @@ namespace Scripts.AssetManagement
 {
     public class AssetProvider : IAssetProvider
     {
-        private readonly Dictionary<string, AsyncOperationHandle> completedCashe = new();
+        private readonly Dictionary<string, AsyncOperationHandle> completedCache = new();
         private readonly Dictionary<string, List<AsyncOperationHandle>> handles = new();
 
         public async UniTask Initialize() =>
@@ -18,7 +18,7 @@ namespace Scripts.AssetManagement
 
         public async UniTask<T> Load<T>(AssetReference assetReference) where T : class
         {
-            if (completedCashe.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))
+            if (completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))
                 return completedHandle.Result as T;
 
             return await RunWithCacheOnComplete(
@@ -28,7 +28,7 @@ namespace Scripts.AssetManagement
 
         public async UniTask<T> Load<T>(string address) where T : class
         {
-            if (completedCashe.TryGetValue(address, out AsyncOperationHandle completedHandle))
+            if (completedCache.TryGetValue(address, out AsyncOperationHandle completedHandle))
                 return completedHandle.Result as T;
 
             return await RunWithCacheOnComplete(
@@ -48,7 +48,7 @@ namespace Scripts.AssetManagement
                 foreach (AsyncOperationHandle handle in resourceHandles)
                     Addressables.Release(handle);
 
-            completedCashe.Clear();
+            completedCache.Clear();
             handles.Clear();
         }
 
@@ -56,7 +56,7 @@ namespace Scripts.AssetManagement
         {
             handle.Completed += completeHandle =>
             {
-                completedCashe[cacheKey] = completeHandle;
+                completedCache[cacheKey] = completeHandle;
             };
 
             AddHandle<T>(cacheKey, handle);

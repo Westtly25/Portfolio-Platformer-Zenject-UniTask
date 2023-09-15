@@ -17,45 +17,44 @@ namespace Scripts.Creatures.Mobs
 
         [SerializeField] private float horizontalTreshold = 0.2f;
 
-        private IEnumerator _current;
-        private GameObject _target;
+        private IEnumerator current;
+        private GameObject target;
 
         private static readonly int IsDeadKey = Animator.StringToHash("is-dead");
 
-        private SpawnListComponent _particles;
-        private Creature _creature;
-        private Animator _animator;
-        private bool _isDead;
-        private Patrol _patrol;
+        private SpawnListComponent particles;
+        private Creature creature;
+        private Animator animator;
+        private bool isDead;
+        private Patrol patrol;
 
         private void Awake()
         {
-            _particles = GetComponent<SpawnListComponent>();
-            _creature = GetComponent<Creature>();
-            _animator = GetComponent<Animator>();
-            _patrol = GetComponent<Patrol>();
+            particles = GetComponent<SpawnListComponent>();
+            creature = GetComponent<Creature>();
+            animator = GetComponent<Animator>();
+            patrol = GetComponent<Patrol>();
         }
 
         private void Start()
         {
-            StartState(_patrol.DoPatrol());
+            StartState(patrol.DoPatrol());
         }
 
         public void OnHeroInVision(GameObject go)
         {
-            if (_isDead) return;
+            if (isDead) return;
 
-            // smth to do:
-            var cast = Physics2D.LinecastAll(transform.position, _target.transform.position);
+            RaycastHit2D[] cast = Physics2D.LinecastAll(transform.position, target.transform.position);
             
-            _target = go;
+            target = go;
             StartState(AgroToHero());
         }
 
         private IEnumerator AgroToHero()
         {
             LookAtHero();
-            _particles.Spawn("Exclamation");
+            particles.Spawn("Exclamation");
             yield return new WaitForSeconds(alarmDelay);
 
             StartState(GoToHero());
@@ -64,8 +63,8 @@ namespace Scripts.Creatures.Mobs
         private void LookAtHero()
         {
             var direction = GetDirectionToTarget();
-            _creature.SetDirection(Vector2.zero);
-            _creature.UpdateSpriteDirection(direction);
+            creature.SetDirection(Vector2.zero);
+            creature.UpdateSpriteDirection(direction);
         }
 
         private IEnumerator GoToHero()
@@ -78,9 +77,9 @@ namespace Scripts.Creatures.Mobs
                 }
                 else
                 {
-                    var horizontalDelta = Mathf.Abs(_target.transform.position.x - transform.position.x);
+                    var horizontalDelta = Mathf.Abs(target.transform.position.x - transform.position.x);
                     if (horizontalDelta <= horizontalTreshold)
-                        _creature.SetDirection(Vector2.zero);
+                        creature.SetDirection(Vector2.zero);
                     else
                         SetDirectionToTarget();
                 }
@@ -88,18 +87,18 @@ namespace Scripts.Creatures.Mobs
                 yield return null;
             }
 
-            _creature.SetDirection(Vector2.zero);
-            _particles.Spawn("MissHero");
+            creature.SetDirection(Vector2.zero);
+            particles.Spawn("MissHero");
             yield return new WaitForSeconds(missHeroCooldown);
 
-            StartState(_patrol.DoPatrol());
+            StartState(patrol.DoPatrol());
         }
 
         private IEnumerator Attack()
         {
             while (canAttack.IsTouchingLayer)
             {
-                _creature.Attack();
+                creature.Attack();
                 yield return new WaitForSeconds(attackCooldown);
             }
 
@@ -109,35 +108,35 @@ namespace Scripts.Creatures.Mobs
         private void SetDirectionToTarget()
         {
             var direction = GetDirectionToTarget();
-            _creature.SetDirection(direction);
+            creature.SetDirection(direction);
         }
 
         private Vector2 GetDirectionToTarget()
         {
-            var direction = _target.transform.position - transform.position;
+            var direction = target.transform.position - transform.position;
             direction.y = 0;
             return direction.normalized;
         }
 
         private void StartState(IEnumerator coroutine)
         {
-            _creature.SetDirection(Vector2.zero);
+            creature.SetDirection(Vector2.zero);
 
-            if (_current != null)
-                StopCoroutine(_current);
+            if (current != null)
+                StopCoroutine(current);
 
-            _current = coroutine;
+            current = coroutine;
             StartCoroutine(coroutine);
         }
 
         public void OnDie()
         {
-            _isDead = true;
-            _animator.SetBool(IsDeadKey, true);
+            isDead = true;
+            animator.SetBool(IsDeadKey, true);
 
-            _creature.SetDirection(Vector2.zero);
-            if (_current != null)
-                StopCoroutine(_current);
+            creature.SetDirection(Vector2.zero);
+            if (current != null)
+                StopCoroutine(current);
         }
     }
 }

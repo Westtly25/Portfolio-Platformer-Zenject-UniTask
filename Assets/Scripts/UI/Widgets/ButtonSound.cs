@@ -9,14 +9,14 @@ namespace Scripts.UI.Widgets
     {
         [SerializeField] private AudioClip _audioClip;
 
-        private AudioSource _source;
+        private AudioSource source;
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (_source == null)
-                _source = AudioUtils.FindSfxSource();
+            if (source == null)
+                source = AudioUtils.FindSfxSource();
 
-            _source.PlayOneShot(_audioClip);
+            source.PlayOneShot(_audioClip);
         }
     }
 }

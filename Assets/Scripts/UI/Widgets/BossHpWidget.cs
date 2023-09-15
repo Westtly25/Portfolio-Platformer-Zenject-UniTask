@@ -7,18 +7,18 @@ namespace Scripts.UI.Widgets
 {
     public class BossHpWidget : MonoBehaviour
     {
-        [SerializeField] private HealthComponent _health;
-        [SerializeField] private ProgressBarWidget _hpBar;
-        [SerializeField] private CanvasGroup _canvas;
+        [SerializeField] private HealthComponent health;
+        [SerializeField] private ProgressBarWidget hpBar;
+        [SerializeField] private CanvasGroup canvas;
 
-        private readonly CompositeDisposable _trash = new CompositeDisposable();
-        private float _maxHealth;
+        private readonly CompositeDisposable trash = new CompositeDisposable();
+        private float maxHealth;
 
         private void Start()
         {
-            _maxHealth = _health.Health;
-            _trash.Retain(_health._onChange.Subscribe(OnHpChanged));
-            _trash.Retain(_health._onDie.Subscribe(HideUI));
+            maxHealth = health.Health;
+            trash.Retain(health._onChange.Subscribe(OnHpChanged));
+            trash.Retain(health._onDie.Subscribe(HideUI));
         }
 
         [ContextMenu("Show")]
@@ -29,7 +29,7 @@ namespace Scripts.UI.Widgets
 
         private void SetAlpha(float alpha)
         {
-            _canvas.alpha = alpha;
+            canvas.alpha = alpha;
         }
 
         [ContextMenu("Hide")]
@@ -40,12 +40,12 @@ namespace Scripts.UI.Widgets
 
         private void OnHpChanged(int hp)
         {
-            _hpBar.SetProgress(hp / _maxHealth);
+            hpBar.SetProgress(hp / maxHealth);
         }
 
         private void OnDestroy()
         {
-            _trash.Dispose();
+            trash.Dispose();
         }
     }
 }

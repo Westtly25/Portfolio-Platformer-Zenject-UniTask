@@ -1,7 +1,7 @@
-using Scripts.Components.ColliderBased;
-using Scripts.Components.GoBased;
-using Scripts.Utils;
 using UnityEngine;
+using Scripts.Utils;
+using Scripts.Components.GoBased;
+using Scripts.Components.ColliderBased;
 
 namespace Scripts.Creatures.Mobs
 {
