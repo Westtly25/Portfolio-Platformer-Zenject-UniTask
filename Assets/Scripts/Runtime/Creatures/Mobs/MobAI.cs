@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Scripts.Creatures.Mobs
 {
+    //TODO FSM needed
     public class MobAI : MonoBehaviour
     {
         [SerializeField] private ColliderCheck vision;

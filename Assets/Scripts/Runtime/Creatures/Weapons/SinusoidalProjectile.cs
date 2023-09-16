@@ -8,6 +8,7 @@ namespace Scripts.Creatures.Weapons
         private float frequency = 1f;
         [SerializeField]
         private float amplitude = 1f;
+
         private float originalY;
         private float time;
 
