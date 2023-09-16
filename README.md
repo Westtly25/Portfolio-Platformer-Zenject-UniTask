@@ -5,3 +5,7 @@
   <li>Zenject integration in progress</li>
   <li>Refactoring in progress</li>
 </ul>
+
+## Project Structure
+
+## Architecture
