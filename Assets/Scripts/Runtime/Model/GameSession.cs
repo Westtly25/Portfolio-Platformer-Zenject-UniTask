@@ -11,6 +11,7 @@ using Scripts.Components.LevelManegement;
 
 namespace Scripts.Model
 {
+    //TODO Refacot and etc
     public class GameSession : MonoBehaviour
     {
         [SerializeField]

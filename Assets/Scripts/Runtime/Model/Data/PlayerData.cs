@@ -7,13 +7,14 @@ namespace Scripts.Model.Data
     [Serializable]
     public class PlayerData
     {
-        [SerializeField] private InventoryData _inventory;
+        [SerializeField]
+        private InventoryHandler _inventory;
 
         public IntProperty Hp = new IntProperty();
         public FloatProperty Fuel = new FloatProperty();
         public PerksData Perks = new PerksData();
         public LevelData Levels = new LevelData();
-        public InventoryData Inventory => _inventory;
+        public InventoryHandler Inventory => _inventory;
 
         public PlayerData Clone()
         {

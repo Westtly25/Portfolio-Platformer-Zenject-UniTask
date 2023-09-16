@@ -12,16 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b5ccb281a7420187ca5c52bdfd7b91, type: 3}
   m_Name: Potions
   m_EditorClassIdentifier: 
-  _collection:
-  - _id: 
-    _effect: 0
-    _value: 5
-    _time: 0
-  - _id: 
-    _effect: 0
-    _value: 10
-    _time: 0
-  - _id: 
-    _effect: 1
-    _value: 10
-    _time: 5
+  collection:
+  - id: 
+    effect: 0
+    value: 0
+    time: 0
+  - id: 
+    effect: 0
+    value: 0
+    time: 0

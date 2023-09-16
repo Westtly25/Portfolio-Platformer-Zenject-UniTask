@@ -11,7 +11,7 @@ namespace Scripts.Model.Data
         private readonly PlayerData data;
         public readonly StringProperty InterfaceSelection = new();
 
-        public readonly Cooldown Cooldown = new Cooldown();
+        public readonly Cooldown Cooldown = new();
         private readonly CompositeDisposable trash = new();
         public event Action OnChanged;
 
@@ -59,15 +59,11 @@ namespace Scripts.Model.Data
             data.Perks.Used.Value = selected;
         }
 
-        public bool IsUsed(string perkId)
-        {
-            return data.Perks.Used.Value == perkId;
-        }
+        public bool IsUsed(string perkId) =>
+            data.Perks.Used.Value == perkId;
 
-        public bool IsUnlocked(string perkId)
-        {
-            return data.Perks.IsUnlocked(perkId);
-        }
+        public bool IsUnlocked(string perkId) =>
+            data.Perks.IsUnlocked(perkId);
 
         public bool CanBuy(string perkId)
         {
@@ -75,9 +71,7 @@ namespace Scripts.Model.Data
             return data.Inventory.IsEnough(def.Price);
         }
 
-        public void Dispose()
-        {
+        public void Dispose() =>
             trash.Dispose();
-        }
     }
 }

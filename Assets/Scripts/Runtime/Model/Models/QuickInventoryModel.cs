@@ -1,15 +1,15 @@
 using System;
-using Scripts.Model.Data.Properties;
-using Scripts.Model.Definitions;
-using Scripts.Model.Definitions.Repositories.Items;
-using Scripts.Utils.Disposables;
 using UnityEngine;
+using Scripts.Utils.Disposables;
+using Scripts.Model.Definitions;
+using Scripts.Model.Data.Properties;
+using Scripts.Model.Definitions.Repositories.Items;
 
 namespace Scripts.Model.Data
 {
     public class QuickInventoryModel : IDisposable
     {
-        private readonly PlayerData _data;
+        private readonly PlayerData data;
 
         public InventoryItemData[] Inventory { get; private set; }
 
@@ -32,10 +32,10 @@ namespace Scripts.Model.Data
 
         public QuickInventoryModel(PlayerData data)
         {
-            _data = data;
+            this.data = data;
 
-            Inventory = _data.Inventory.GetAll(ItemTag.Usable);
-            _data.Inventory.OnChanged += OnChangedInventory;
+            Inventory = this.data.Inventory.GetAll(ItemTag.Usable);
+            this.data.Inventory.OnChanged += OnChangedInventory;
         }
 
         public IDisposable Subscribe(Action call)
@@ -46,19 +46,17 @@ namespace Scripts.Model.Data
 
         private void OnChangedInventory(string id, int value)
         {
-            Inventory = _data.Inventory.GetAll(ItemTag.Usable);
+            Inventory = data.Inventory.GetAll(ItemTag.Usable);
             SelectedIndex.Value = Mathf.Clamp(SelectedIndex.Value, 0, Inventory.Length - 1);
             OnChanged?.Invoke();
         }
 
-        public void SetNextItem()
-        {
+        public void SetNextItem() =>
             SelectedIndex.Value = (int) Mathf.Repeat(SelectedIndex.Value + 1, Inventory.Length);
-        }
 
         public void Dispose()
         {
-            _data.Inventory.OnChanged -= OnChangedInventory;
+            data.Inventory.OnChanged -= OnChangedInventory;
         }
     }
 }

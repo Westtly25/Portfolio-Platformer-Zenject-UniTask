@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 
 namespace Scripts.Creatures.Hero
 {
-    public class HeroFactory
+    public class HeroFactory : IHeroFactory
     {
         private readonly DiContainer container;
         private readonly IAssetProvider provider;

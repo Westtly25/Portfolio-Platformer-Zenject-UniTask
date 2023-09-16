@@ -16,6 +16,7 @@ using Scripts.Model.Definitions.Repositories.Items;
 
 namespace Scripts.Creatures.Hero
 {
+    //Refactoring Needed
     public class Hero : Creature, ICanAddInInventory
     {
         [SerializeField]

@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Items
   m_EditorClassIdentifier: 
   collection:
-  - id: 
+  - id: 0
     icon: {fileID: 0}
-    tags: 
-  - id: 
+    tags: 000000000100000003000000
+  - id: 1
     icon: {fileID: 0}
-    tags: 
+    tags: 00000000
+  - id: 3
+    icon: {fileID: 0}
+    tags: 00000000

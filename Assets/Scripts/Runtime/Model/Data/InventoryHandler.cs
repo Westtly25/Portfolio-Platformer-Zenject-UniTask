@@ -5,11 +5,13 @@ using Scripts.Model.Definitions;
 using System.Collections.Generic;
 using Scripts.Model.Definitions.Repositories;
 using Scripts.Model.Definitions.Repositories.Items;
+using Assets.Scripts.Architecture.Services.Save_Service.Interface;
+using Assets.Scripts.Architecture.Services.Save_Service;
 
 namespace Scripts.Model.Data
 {
     [Serializable]
-    public class InventoryData
+    public class InventoryHandler : IInventoryHandler, IPersistentDataListener
     {
         [SerializeField]
         private List<InventoryItemData> inventory = new();
@@ -73,7 +75,7 @@ namespace Scripts.Model.Data
 
             for (var i = 0; i < value; i++)
             {
-                var item = new InventoryItemData(id) {Value = 1};
+                var item = new InventoryItemData(id) { Value = 1 };
                 inventory.Add(item);
             }
         }
@@ -160,6 +162,16 @@ namespace Scripts.Model.Data
             }
 
             return true;
+        }
+
+        public void LoadData(GameData gameData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveData(ref GameData gameData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

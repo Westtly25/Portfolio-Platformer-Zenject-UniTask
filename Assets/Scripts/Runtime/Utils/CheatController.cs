@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 
 public class CheatController : MonoBehaviour
 {
-    [SerializeField] private float _inputTimeToLive;
-    [SerializeField] private CheatItem[] _cheats;
+    [SerializeField] 
+    private float inputTimeToLive;
+    [SerializeField]
+    private CheatItem[] cheats;
 
     private string _currentInput;
     private float _inputTime;
@@ -24,13 +26,13 @@ public class CheatController : MonoBehaviour
     private void OnTextInput(char inputChar)
     {
         _currentInput += inputChar;
-        _inputTime = _inputTimeToLive;
+        _inputTime = inputTimeToLive;
         FindAnyCheats();
     }
 
     private void FindAnyCheats()
     {
-        foreach (var cheatItem in _cheats)
+        foreach (var cheatItem in cheats)
         {
             if (_currentInput.Contains(cheatItem.Name))
             {
