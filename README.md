@@ -11,9 +11,12 @@
 <ul>
   <li>Art</li>
   <ul>
-    <li></li>
+    <li>Containes visual and audio parts of game</li>
+    <li>Audio & Sounds</li>
+    <li>Sprites & Textures</li>
+    <li>Materials</li>
   </ul>
-  <li>Edito</li>
+  <li>Editor</li>
   <ul>
     <li></li>
   </ul>
@@ -26,6 +29,5 @@
     <li></li>
   </ul>
 </ul>
-
 
 ## Architecture
