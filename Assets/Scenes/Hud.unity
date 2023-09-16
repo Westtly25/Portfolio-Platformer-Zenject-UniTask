@@ -1330,7 +1330,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -10, y: -10}
+  m_SizeDelta: {x: -12, y: -12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692736972
 MonoBehaviour:
@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 320, y: 180}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2281,8 +2281,8 @@ MonoBehaviour:
   _typing: {fileID: 8300000, guid: a1953691f03564e37913d684c3c2184b, type: 3}
   _open: {fileID: 8300000, guid: b85ab363af8044189a7330fd47527675, type: 3}
   _close: {fileID: 8300000, guid: da638f45ff4e84eb9bf85b01347e4ac4, type: 3}
-  _content: {fileID: 706789365}
-  _right: {fileID: 850905989}
+  content: {fileID: 0}
+  right: {fileID: 0}
 --- !u!1 &1337049482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,7 +2508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -4}
   m_SizeDelta: {x: 51, y: 24}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1509131411
@@ -2988,7 +2988,7 @@ MonoBehaviour:
   _typing: {fileID: 8300000, guid: a1953691f03564e37913d684c3c2184b, type: 3}
   _open: {fileID: 8300000, guid: b85ab363af8044189a7330fd47527675, type: 3}
   _close: {fileID: 8300000, guid: da638f45ff4e84eb9bf85b01347e4ac4, type: 3}
-  _content: {fileID: 1654966171}
+  content: {fileID: 0}
 --- !u!114 &1654966171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3059,6 +3059,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2064448325}
+        m_TargetAssemblyTypeName: 
         m_MethodName: OnOptionsSelected
         m_Mode: 0
         m_Arguments:
@@ -3786,10 +3787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba60a529024447e1bab5f80e2e2b08c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _content: {fileID: 514246807}
-  _contentText: {fileID: 414176597}
-  _optionsContainer: {fileID: 514246808}
-  _prefab: {fileID: 1658880332}
+  content: {fileID: 0}
+  contentText: {fileID: 0}
+  optionsContainer: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
