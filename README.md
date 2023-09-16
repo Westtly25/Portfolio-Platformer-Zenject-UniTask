@@ -8,4 +8,24 @@
 
 ## Project Structure
 
+<ul> Folder
+  <li>Art</li>
+  <ul>
+    <li></li>
+  </ul>
+  <li>Edito</li>
+  <ul>
+    <li></li>
+  </ul>
+  <li>Runtime</li>
+  <ul>
+    <li></li>
+  </ul>
+  <li>Shared</li>
+  <ul>
+    <li></li>
+  </ul>
+</ul>
+
+
 ## Architecture
