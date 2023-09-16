@@ -7,8 +7,8 @@
 </ul>
 
 ## Project Structure
-
-<ul> Folder
+### Folders
+<ul>
   <li>Art</li>
   <ul>
     <li></li>
