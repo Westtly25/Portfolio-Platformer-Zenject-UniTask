@@ -1,5 +1,6 @@
 ﻿using Zenject;
 using Scripts.Creatures.Hero;
+using Scripts.Model.Definitions;
 using Assets.Code.Scripts.Runtime.Save_system.Interface;
 
 namespace Assets.Scripts.Architecture.Core
@@ -8,16 +9,20 @@ namespace Assets.Scripts.Architecture.Core
     {
         private readonly IHeroFactory heroFactory;
         private readonly ISaveLoadService saveLoadService;
+        private readonly GameConfigsProvider gameConfigsProvider;
 
         public CoreFlow(IHeroFactory heroFactory,
-                        ISaveLoadService saveLoadService)
+                        ISaveLoadService saveLoadService,
+                        GameConfigsProvider gameConfigsProvider)
         {
             this.heroFactory = heroFactory;
             this.saveLoadService = saveLoadService;
+            this.gameConfigsProvider = gameConfigsProvider;
         }
 
         public async void Initialize()
         {
+            await gameConfigsProvider.Initialize();
             await heroFactory.CreateAsync();
         }
     }

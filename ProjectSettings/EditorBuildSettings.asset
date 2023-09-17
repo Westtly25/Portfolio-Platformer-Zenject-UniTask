@@ -33,5 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level5(Boss).unity
     guid: 5f418cd2b206a4658b76e64aa8edbeef
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 3b399b1b2adcd9241985f2c7016b309d,
+      type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: bc117a3fbf6934545b929c43eb57647c,
       type: 2}
