@@ -7,25 +7,33 @@ namespace Scripts.UI.Hud
 {
     public class CurrentPerkWidget : MonoBehaviour
     {
-        [SerializeField] private Image _icon;
-        [SerializeField] private Image _cooldownImage;
+        [SerializeField]
+        private Image icon;
+        [SerializeField]
+        private Image cooldownImage;
         
-        private GameSession _session;
+        //TODO
+        private GameSession session;
 
         private void Start()
         {
-            _session = FindObjectOfType<GameSession>();
+            session = FindObjectOfType<GameSession>();
         }
 
-        public void Set(PerkDef perkDef)
+        public void Initialize()
         {
-            _icon.sprite = perkDef.Icon;
+
+        }
+
+        public void Set(PerkConfig perkDef)
+        {
+            icon.sprite = perkDef.Icon;
         }
 
         private void Update()
         {
-            var cooldown = _session.PerksModel.Cooldown;
-            _cooldownImage.fillAmount = cooldown.RemainingTime / cooldown.Value;
+            Utils.Cooldown cooldown = session.PerksModel.Cooldown;
+            cooldownImage.fillAmount = cooldown.RemainingTime / cooldown.Value;
         }
     }
 }

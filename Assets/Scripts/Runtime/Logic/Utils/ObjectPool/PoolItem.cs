@@ -5,25 +5,26 @@ namespace Scripts.Utils.ObjectPool
 {
     public class PoolItem : MonoBehaviour
     {
-        [SerializeField] private UnityEvent _onRestart;
+        [SerializeField]
+        private UnityEvent onRestart;
 
-        private int _id;
-        private Pool _pool;
+        private int id;
+        private Pool pool;
 
         public void Restart()
         {
-            _onRestart?.Invoke();
+            onRestart?.Invoke();
         }
 
         public void Release()
         {
-            _pool.Release(_id, this);
+            pool.Release(id, this);
         }
 
         public void Retain(int id, Pool pool)
         {
-            _id = id;
-            _pool = pool;
+            this.id = id;
+            this.pool = pool;
         }
     }
 }

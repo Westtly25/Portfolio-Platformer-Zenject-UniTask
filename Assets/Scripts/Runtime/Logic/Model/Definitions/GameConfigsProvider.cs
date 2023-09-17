@@ -12,6 +12,8 @@ namespace Scripts.Model.Definitions
         [Header("Injected")]
         private readonly IAssetProvider assetProvider;
 
+        public ICoreGameConfigs CoreGameConfigs => coreGameConfigs;
+
         [Inject]
         public GameConfigsProvider(IAssetProvider assetProvider)
         {
@@ -19,8 +21,6 @@ namespace Scripts.Model.Definitions
         }
 
         public async UniTask Initialize() =>
-            coreGameConfigs = await assetProvider.Load<CoreGameConfigs>("ConfigsInstance");
-
-        public ICoreGameConfigs CoreGameConfigs => coreGameConfigs;
+            coreGameConfigs = await assetProvider.Load<CoreGameConfigs>(AssetAddress.CoreGameConfigs);
     }
 }

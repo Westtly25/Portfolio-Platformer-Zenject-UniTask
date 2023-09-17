@@ -1,10 +1,13 @@
 using UnityEngine;
 using Scripts.Components.Audio;
-using Scripts.Components.ColliderBased;
 using Scripts.Components.GoBased;
+using Scripts.Components.ColliderBased;
 
 namespace Scripts.Creatures
 {
+    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(PlaySoundsComponent))]
     public class Creature : MonoBehaviour
     {
         [Header("Params")]
@@ -47,10 +50,8 @@ namespace Scripts.Creatures
             sounds = GetComponent<PlaySoundsComponent>();
         }
 
-        public void SetDirection(Vector2 direction)
-        {
+        public void SetDirection(Vector2 direction) =>
             this.direction = direction;
-        }
 
         protected virtual void Update()
         {

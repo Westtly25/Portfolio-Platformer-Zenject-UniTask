@@ -7,10 +7,11 @@ namespace Scripts.UI.Widgets
 {
     public class ButtonSound : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private AudioClip _audioClip;
+        [SerializeField]
+        private AudioClip _audioClip;
 
         private AudioSource source;
-
+        //TODO
         public void OnPointerClick(PointerEventData eventData)
         {
             if (source == null)

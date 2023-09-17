@@ -5,11 +5,10 @@ namespace Scripts.UI.Widgets
 {
     public class ProgressBarWidget : MonoBehaviour
     {
-        [SerializeField] private Image _bar;
+        [SerializeField]
+        private Image bar;
 
-        public void SetProgress(float progress)
-        {
-            _bar.fillAmount = progress;
-        }
+        public void SetProgress(float progress) =>
+            bar.fillAmount = progress;
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Scripts.UI.Windows.PerksWindow
 {
-    public class PerkWidget : MonoBehaviour, IItemRenderer<PerkDef>
+    public class PerkWidget : MonoBehaviour, IItemRenderer<PerkConfig>
     {
         [SerializeField] private Image _icon;
         [SerializeField] private GameObject _isUsed;
@@ -14,7 +14,7 @@ namespace Scripts.UI.Windows.PerksWindow
         [SerializeField] private GameObject _isLocked;
 
         private GameSession _session;
-        private PerkDef _data;
+        private PerkConfig _data;
 
         private void Start()
         {
@@ -22,7 +22,7 @@ namespace Scripts.UI.Windows.PerksWindow
             UpdateView();
         }
 
-        public void SetData(PerkDef data, int index)
+        public void SetData(PerkConfig data, int index)
         {
             _data = data;
 

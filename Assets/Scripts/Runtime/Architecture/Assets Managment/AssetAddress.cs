@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Scripts.AssetManagement
 {
     public static class AssetAddress
@@ -6,5 +8,6 @@ namespace Scripts.AssetManagement
         public const string AudioContainer = "AudioContainer";
         public const string LevelConfig = "LevelConfig";
         public const string MainAudioMixer = "MainAudioMixer";
+        public const string CoreGameConfigs = "CoreGameConfigs";
     }
 }

@@ -18,7 +18,7 @@ namespace Scripts.UI.Windows.PerksWindow
         [SerializeField] private Text _infoText;
         [SerializeField] private ItemWidget _price;
 
-        private PredefinedDataGroup<PerkDef, PerkWidget> _dataGroup;
+        private PredefinedDataGroup<PerkConfig, PerkWidget> _dataGroup;
         private readonly CompositeDisposable _trash = new CompositeDisposable();
         private GameSession _session;
 
@@ -26,7 +26,7 @@ namespace Scripts.UI.Windows.PerksWindow
         {
             base.Start();
 
-            _dataGroup = new PredefinedDataGroup<PerkDef, PerkWidget>(_container);
+            _dataGroup = new PredefinedDataGroup<PerkConfig, PerkWidget>(_container);
             _session = FindObjectOfType<GameSession>();
 
             _trash.Retain(_session.PerksModel.Subscribe(OnPerksChanged));

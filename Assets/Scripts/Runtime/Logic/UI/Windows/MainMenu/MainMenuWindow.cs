@@ -19,7 +19,7 @@ namespace Scripts.UI.MainMenu
             _closeAction = () =>
             {
                 var loader = FindObjectOfType<LevelLoader>();
-                loader.LoadLevel("Level1");
+                //loader.LoadLevel("Level1");
             };
             Close();
         }

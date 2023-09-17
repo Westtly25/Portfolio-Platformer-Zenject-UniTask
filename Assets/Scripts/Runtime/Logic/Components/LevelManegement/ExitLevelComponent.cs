@@ -14,7 +14,8 @@ namespace Scripts.Components.LevelManegement
             var session = FindObjectOfType<GameSession>();
             session.Save();
             var loader = FindObjectOfType<LevelLoader>();
-            loader.LoadLevel(sceneName);
+            //TODO
+            //loader.LoadLevel(sceneName);
         }
     }
 }

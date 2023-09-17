@@ -7,9 +7,12 @@ namespace Scripts.UI.Widgets
 {
     public class BossHpWidget : MonoBehaviour
     {
-        [SerializeField] private HealthComponent health;
-        [SerializeField] private ProgressBarWidget hpBar;
-        [SerializeField] private CanvasGroup canvas;
+        [SerializeField]
+        private HealthComponent health;
+        [SerializeField]
+        private ProgressBarWidget hpBar;
+        [SerializeField]
+        private CanvasGroup canvas;
 
         private readonly CompositeDisposable trash = new CompositeDisposable();
         private float maxHealth;

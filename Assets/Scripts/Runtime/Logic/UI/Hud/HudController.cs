@@ -5,6 +5,7 @@ using Scripts.UI.Widgets;
 using Scripts.Utils;
 using Scripts.Utils.Disposables;
 using UnityEngine;
+using Zenject;
 
 namespace Scripts.UI.Hud
 {
@@ -15,6 +16,12 @@ namespace Scripts.UI.Hud
 
         private GameSession _session;
         private readonly CompositeDisposable _trash = new CompositeDisposable();
+
+        [Inject]
+        public void Constructor()
+        {
+
+        }
 
         private void Start()
         {

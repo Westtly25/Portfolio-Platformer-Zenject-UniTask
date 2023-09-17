@@ -6,21 +6,23 @@ namespace Scripts.UI.Widgets
 {
     public class LifeBarWidget : MonoBehaviour
     {
-        [SerializeField] private ProgressBarWidget _lifeBar;
-        [SerializeField] private HealthComponent _hp;
+        [SerializeField]
+        private ProgressBarWidget lifeBar;
+        [SerializeField]
+        private HealthComponent hp;
 
-        private readonly CompositeDisposable _trash = new CompositeDisposable();
-        private int _maxHp;
+        private readonly CompositeDisposable trash = new CompositeDisposable();
+        private int maxHp;
 
         private void Start()
         {
-            if (_hp == null)
-                _hp = GetComponentInParent<HealthComponent>();
+            if (hp == null)
+                hp = GetComponentInParent<HealthComponent>();
 
-            _maxHp = _hp.Health;
+            maxHp = hp.Health;
 
-            _trash.Retain(_hp.onDie.Subscribe(OnDie));
-            _trash.Retain(_hp._onChange.Subscribe(OnHpChanged));
+            trash.Retain(hp.onDie.Subscribe(OnDie));
+            trash.Retain(hp._onChange.Subscribe(OnHpChanged));
         }
 
         private void OnDie()
@@ -30,13 +32,13 @@ namespace Scripts.UI.Widgets
 
         private void OnHpChanged(int hp)
         {
-            var progress = (float) hp / _maxHp;
-            _lifeBar.SetProgress(progress);
+            var progress = (float) hp / maxHp;
+            lifeBar.SetProgress(progress);
         }
 
         private void OnDestroy()
         {
-            _trash.Dispose();
+            trash.Dispose();
         }
     }
 }
