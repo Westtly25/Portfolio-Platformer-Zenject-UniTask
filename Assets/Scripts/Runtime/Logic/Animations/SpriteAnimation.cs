@@ -21,7 +21,7 @@ namespace Scripts.Animations
         private int currentFrame;
         private bool isPlaying = true;
 
-        private int _currentClip;
+        private int currentClip;
 
         private void Start()
         {
@@ -43,7 +43,7 @@ namespace Scripts.Animations
             {
                 if (clips[i].Name == clipName)
                 {
-                    _currentClip = i;
+                    currentClip = i;
                     StartAnimation();
                     return;
                 }
@@ -68,7 +68,7 @@ namespace Scripts.Animations
         {
             if (nextFrameTime > Time.time) return;
 
-            var clip = clips[_currentClip];
+            var clip = clips[currentClip];
             if (currentFrame >= clip.Sprites.Length)
             {
                 if (clip.Loop)
@@ -83,7 +83,7 @@ namespace Scripts.Animations
                     if (clip.AllowNextClip)
                     {
                         currentFrame = 0;
-                        _currentClip = (int) Mathf.Repeat(_currentClip + 1, clips.Length);
+                        currentClip = (int) Mathf.Repeat(currentClip + 1, clips.Length);
                     }
                 }
 
