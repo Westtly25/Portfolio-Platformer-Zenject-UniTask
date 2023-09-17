@@ -1,4 +1,5 @@
 ﻿using Zenject;
+using UnityEngine;
 using Scripts.AssetManagement;
 using Cysharp.Threading.Tasks;
 
@@ -17,8 +18,8 @@ namespace Scripts.Creatures.Hero
 
         public async UniTask<Hero> CreateAsync()
         {
-            Hero asset = await provider.Load<Hero>(AssetAddress.Hero);
-            return container.InstantiateComponent<Hero>(asset.gameObject);
+            GameObject asset = await provider.Load<GameObject>(AssetAddress.Hero);
+            return container.InstantiateComponent<Hero>(asset);
         }
     }
 }
