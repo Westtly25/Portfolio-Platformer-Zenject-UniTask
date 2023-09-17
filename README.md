@@ -1,4 +1,4 @@
-# Platformer
+# Platformer 2D
 ## Status
 <ul>
   <li>Core gameplay</li>
