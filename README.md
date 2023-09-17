@@ -6,12 +6,17 @@
   <li>Refactoring in progress</li>
 </ul>
 
+## Game Mechanics
+<ul>
+  <li></li>
+</ul>
+
 ## Project Structure
 ### Folders
 <ul>
   <li>Art</li>
   <ul>
-    <li>Containes visual and audio parts of game</li>
+    <li>Containes visual and audio parts of the game</li>
     <li>Audio & Sounds</li>
     <li>Sprites & Textures</li>
     <li>Materials</li>
@@ -22,11 +27,12 @@
   </ul>
   <li>Runtime</li>
   <ul>
-    <li></li>
+    <li>Achitecture</li>
+    <li>Logic</li>
   </ul>
   <li>Shared</li>
   <ul>
-    <li></li>
+    <li>Core game constants</li>
   </ul>
 </ul>
 
