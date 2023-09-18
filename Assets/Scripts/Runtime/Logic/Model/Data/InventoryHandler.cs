@@ -20,9 +20,9 @@ namespace Scripts.Model.Data
         private List<InventoryItemData> inventory = new();
 
         public delegate void OnInventoryChanged(string id, int value);
-
         public OnInventoryChanged OnChanged;
 
+        [Header("Configs")]
         private ItemsRepository itemsRepository;
         private PlayerConfigs playerConfigs;
 
@@ -47,7 +47,7 @@ namespace Scripts.Model.Data
         {
             if (value <= 0) return;
 
-            var itemDef = configsProvider.CoreGameConfigs.Items.Get(id);
+            ItemConfig itemDef = configsProvider.CoreGameConfigs.Items.Get(id);
             if (itemDef.IsVoid) return;
 
             if (itemDef.HasTag(ItemTag.Stackable))
@@ -64,11 +64,11 @@ namespace Scripts.Model.Data
 
         public InventoryItemData[] GetAll(params ItemTag[] tags)
         {
-            var retValue = new List<InventoryItemData>();
-            foreach (var item in inventory)
+            List<InventoryItemData> retValue = new List<InventoryItemData>();
+            foreach (InventoryItemData item in inventory)
             {
-                var itemDef = configsProvider.CoreGameConfigs.Items.Get(item.Id);
-                var isAllRequirementsMet = tags.All(x => itemDef.HasTag(x));
+                ItemConfig itemDef = configsProvider.CoreGameConfigs.Items.Get(item.Id);
+                bool isAllRequirementsMet = tags.All(x => itemDef.HasTag(x));
                 if (isAllRequirementsMet)
                     retValue.Add(item);
             }
@@ -78,8 +78,8 @@ namespace Scripts.Model.Data
 
         private void AddToStack(string id, int value)
         {
-            var isFull = inventory.Count >= configsProvider.CoreGameConfigs.Player.InventorySize;
-            var item = GetItem(id);
+            bool isFull = inventory.Count >= configsProvider.CoreGameConfigs.Player.InventorySize;
+            InventoryItemData item = GetItem(id);
             if (item == null)
             {
                 if (isFull) return;
@@ -93,7 +93,7 @@ namespace Scripts.Model.Data
 
         private void AddNonStack(string id, int value)
         {
-            var itemLasts = configsProvider.CoreGameConfigs.Player.InventorySize - inventory.Count;
+            int itemLasts = configsProvider.CoreGameConfigs.Player.InventorySize - inventory.Count;
             value = Mathf.Min(itemLasts, value);
 
             for (var i = 0; i < value; i++)
@@ -122,7 +122,7 @@ namespace Scripts.Model.Data
 
         private void RemoveFromStack(string id, int value)
         {
-            var item = GetItem(id);
+            InventoryItemData item = GetItem(id);
             if (item == null) return;
 
             item.Value -= value;
@@ -144,7 +144,7 @@ namespace Scripts.Model.Data
 
         private InventoryItemData GetItem(string id)
         {
-            foreach (var itemData in inventory)
+            foreach (InventoryItemData itemData in inventory)
             {
                 if (itemData.Id == id)
                     return itemData;
@@ -154,8 +154,8 @@ namespace Scripts.Model.Data
         }
         public int Count(string id)
         {
-            var count = 0;
-            foreach (var item in inventory)
+            int count = 0;
+            foreach (InventoryItemData item in inventory)
             {
                 if (item.Id == id)
                     count += item.Value;
@@ -176,10 +176,11 @@ namespace Scripts.Model.Data
                     joined.Add(item.ItemId, item.Count);
             }
 
-            foreach (var kvp in joined)
+            foreach (KeyValuePair<string, int> kvp in joined)
             {
-                var count = Count(kvp.Key);
-                if (count < kvp.Value) return false;
+                int count = Count(kvp.Key);
+                if (count < kvp.Value)
+                    return false;
             }
 
             return true;
