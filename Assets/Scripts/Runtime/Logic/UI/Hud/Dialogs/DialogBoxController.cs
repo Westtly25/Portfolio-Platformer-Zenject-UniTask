@@ -1,50 +1,49 @@
+using UnityEngine;
+using Scripts.Utils;
 using System.Collections;
 using Scripts.Model.Data;
-using Scripts.Model.Definitions.Localization;
-using Scripts.Utils;
-using UnityEngine;
 using UnityEngine.Events;
 
 namespace Scripts.UI.Hud.Dialogs
 {
     public class DialogBoxController : MonoBehaviour
     {
-        [SerializeField] private GameObject _container;
-        [SerializeField] private Animator _animator;
+        [SerializeField] private GameObject container;
+        [SerializeField] private Animator animator;
 
-        [Space] [SerializeField] private float _textSpeed = 0.09f;
+        [Space] [SerializeField] private float textSpeed = 0.09f;
 
-        [Header("sounds")] [SerializeField] private AudioClip _typing;
-        [SerializeField] private AudioClip _open;
-        [SerializeField] private AudioClip _close;
+        [Header("sounds")] [SerializeField] private AudioClip typing;
+        [SerializeField] private AudioClip open;
+        [SerializeField] private AudioClip close;
 
         [Space] [SerializeField] protected DialogContent content;
 
         private static readonly int IsOpen = Animator.StringToHash("IsOpen");
 
-        private DialogData _data;
-        private int _currentSentence;
-        private AudioSource _sfxSource;
-        private Coroutine _typingRoutine;
-        private UnityEvent _onComplete;
+        private DialogData data;
+        private int currentSentence;
+        private AudioSource sfxSource;
+        private Coroutine typingRoutine;
+        private UnityEvent onComplete;
 
-        protected Sentence CurrentSentence => _data.Sentences[_currentSentence];
+        protected Sentence CurrentSentence => data.Sentences[currentSentence];
 
         private void Start()
         {
-            _sfxSource = AudioUtils.FindSfxSource();
+            sfxSource = AudioUtils.FindSfxSource();
         }
 
         public void ShowDialog(DialogData data, UnityEvent onComplete)
         {
-            _onComplete = onComplete;
-            _data = data;
-            _currentSentence = 0;
+            this.onComplete = onComplete;
+            this.data = data;
+            currentSentence = 0;
             CurrentContent.Text.text = string.Empty;
 
-            _container.SetActive(true);
-            _sfxSource.PlayOneShot(_open);
-            _animator.SetBool(IsOpen, true);
+            container.SetActive(true);
+            sfxSource.PlayOneShot(open);
+            animator.SetBool(IsOpen, true);
         }
 
         private IEnumerator TypeDialogText()
@@ -53,39 +52,40 @@ namespace Scripts.UI.Hud.Dialogs
             var sentence = CurrentSentence;
             CurrentContent.TrySetIcon(sentence.Icon);
 
-            var localizedSentence = sentence.Value.Localize();
+            //TODO
+            var localizedSentence = ""; /*= sentence.Value.Localize();*/
 
             foreach (var letter in localizedSentence)
             {
                 CurrentContent.Text.text += letter;
-                _sfxSource.PlayOneShot(_typing);
-                yield return new WaitForSeconds(_textSpeed);
+                sfxSource.PlayOneShot(typing);
+                yield return new WaitForSeconds(textSpeed);
             }
 
-            _typingRoutine = null;
+            typingRoutine = null;
         }
 
         protected virtual DialogContent CurrentContent => content;
 
         public void OnSkip()
         {
-            if (_typingRoutine == null) return;
+            if (typingRoutine == null) return;
 
             StopTypeAnimation();
-            var sentence = _data.Sentences[_currentSentence].Value;
-            CurrentContent.Text.text = sentence.Localize();
+            var sentence = data.Sentences[currentSentence].Value;
+            CurrentContent.Text.text = ""; //sentence.Localize();
         }
 
         public void OnContinue()
         {
             StopTypeAnimation();
-            _currentSentence++;
+            currentSentence++;
 
-            var isDialogCompleted = _currentSentence >= _data.Sentences.Length;
+            var isDialogCompleted = currentSentence >= data.Sentences.Length;
             if (isDialogCompleted)
             {
                 HideDialogBox();
-                _onComplete?.Invoke();
+                onComplete?.Invoke();
             }
             else
             {
@@ -95,20 +95,20 @@ namespace Scripts.UI.Hud.Dialogs
 
         private void HideDialogBox()
         {
-            _animator.SetBool(IsOpen, false);
-            _sfxSource.PlayOneShot(_close);
+            animator.SetBool(IsOpen, false);
+            sfxSource.PlayOneShot(close);
         }
 
         private void StopTypeAnimation()
         {
-            if (_typingRoutine != null)
-                StopCoroutine(_typingRoutine);
-            _typingRoutine = null;
+            if (typingRoutine != null)
+                StopCoroutine(typingRoutine);
+            typingRoutine = null;
         }
 
         protected virtual void OnStartDialogAnimation()
         {
-            _typingRoutine = StartCoroutine(TypeDialogText());
+            typingRoutine = StartCoroutine(TypeDialogText());
         }
 
         private void OnCloseAnimationComplete()

@@ -1,9 +1,8 @@
 using System;
-using System.Diagnostics;
+using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using DataSakura.Runtime.Utilities.Logging;
-using UniRx;
+using Scripts.Utils.Disposables;
 
 namespace DataSakura.Runtime.Utilities
 {
@@ -23,31 +22,21 @@ namespace DataSakura.Runtime.Utilities
 
     public sealed class LoadingService
     {
-        private readonly Stopwatch _watch = new();
-
         public readonly CompositeDisposable Disposable = new();
-
 
         private void OnLoadingBegin(object unit)
         {
-            _watch.Restart();
-            Log.Loading.D($"{unit.GetType().Name} loading is started");
+            Debug.Log($"{unit.GetType().Name} loading is started");
         }
 
         private async UniTask OnLoadingFinish(object unit, bool isError)
         {
-            _watch.Stop();
-            Log.Loading.D($"{unit.GetType().Name} is {(isError ? "NOT " : "")}loaded with time {_watch.ElapsedMilliseconds}ms");
-
             int currentThreadId = Thread.CurrentThread.ManagedThreadId;
             int mainThreadId = PlayerLoopHelper.MainThreadId;
 
             if (mainThreadId != currentThreadId) {
-                _watch.Restart();
-                Log.Loading.D($"[THREAD] start switching from '{currentThreadId}' thread to main thread '{mainThreadId}'");
+                Debug.Log($"[THREAD] start switching from '{currentThreadId}' thread to main thread '{mainThreadId}'");
                 await UniTask.SwitchToMainThread();
-                _watch.Stop();
-                Log.Loading.D($"[THREAD] switch finished with time {_watch.ElapsedMilliseconds}");
             }
         }
 
@@ -55,13 +44,15 @@ namespace DataSakura.Runtime.Utilities
         {
             var isError = true;
 
-            try {
+            try
+            {
                 OnLoadingBegin(loadUnit);
                 await loadUnit.Load();
                 isError = false;
             }
-            catch (Exception e) {
-                Log.Loading.E(e);
+            catch (Exception e)
+            {
+                Debug.Log(e);
 
                 if (!skipExceptionThrow)
                     throw;
@@ -73,7 +64,7 @@ namespace DataSakura.Runtime.Utilities
 
         public async UniTask BeginLoading(IDisposableLoadUnit unit, bool skipExceptionThrow = false)
         {
-            Disposable.Add(unit);
+            Disposable.Retain(unit);
             await BeginLoading((ILoadUnit)unit, skipExceptionThrow);
         }
 
@@ -87,7 +78,7 @@ namespace DataSakura.Runtime.Utilities
                 isError = false;
             }
             catch (Exception e) {
-                Log.Loading.E(e);
+                Debug.Log(e);
 
                 if (!skipExceptionThrow)
                     throw;
@@ -99,7 +90,7 @@ namespace DataSakura.Runtime.Utilities
 
         public async UniTask BeginLoading<T>(IDisposableLoadUnit<T> unit, T param, bool skipExceptionThrow = false)
         {
-            Disposable.Add(unit);
+            Disposable.Retain(unit);
             await BeginLoading((ILoadUnit<T>)unit, param, skipExceptionThrow);
         }
 
@@ -113,19 +104,21 @@ namespace DataSakura.Runtime.Utilities
         {
             var isError = true;
 
-            try {
+            try
+            {
                 OnLoadingBegin(logName);
                 var t = UniTask.WhenAll(units.Select(e => e.Load()));
                 await t;
                 isError = false;
             }
             catch (Exception e) {
-                Log.Loading.E(e);
+                Debug.Log(e);
 
                 if (!skipExceptionThrow)
                     throw;
             }
-            finally {
+            finally
+            {
                 await OnLoadingFinish(logName, isError);
             }
         }
