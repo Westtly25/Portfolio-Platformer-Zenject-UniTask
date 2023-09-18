@@ -1,8 +1,11 @@
 using System;
+using Zenject;
 using UnityEngine;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Scripts.Model.Definitions;
 using System.Collections.Generic;
+using Scripts.Model.Definitions.Player;
 using Scripts.Model.Definitions.Repositories;
 using Scripts.Model.Definitions.Repositories.Items;
 using Assets.Scripts.Architecture.Services.Save_Service;
@@ -20,11 +23,31 @@ namespace Scripts.Model.Data
 
         public OnInventoryChanged OnChanged;
 
+        private ItemsRepository itemsRepository;
+        private PlayerConfigs playerConfigs;
+
+        [Header("Injected")]
+        private readonly GameConfigsProvider configsProvider;
+
+        [Inject]
+        public InventoryHandler(GameConfigsProvider configsProvider)
+        {
+            this.configsProvider = configsProvider;
+        }
+
+        public UniTaskVoid Initialize()
+        {
+            itemsRepository = configsProvider.CoreGameConfigs.Items;
+            playerConfigs = configsProvider.CoreGameConfigs.Player;
+
+            return new UniTaskVoid();
+        }
+
         public void Add(string id, int value)
         {
             if (value <= 0) return;
 
-            var itemDef = CoreGameConfigs.ConfigsInstance.Items.Get(id);
+            var itemDef = configsProvider.CoreGameConfigs.Items.Get(id);
             if (itemDef.IsVoid) return;
 
             if (itemDef.HasTag(ItemTag.Stackable))
@@ -44,7 +67,7 @@ namespace Scripts.Model.Data
             var retValue = new List<InventoryItemData>();
             foreach (var item in inventory)
             {
-                var itemDef = CoreGameConfigs.ConfigsInstance.Items.Get(item.Id);
+                var itemDef = configsProvider.CoreGameConfigs.Items.Get(item.Id);
                 var isAllRequirementsMet = tags.All(x => itemDef.HasTag(x));
                 if (isAllRequirementsMet)
                     retValue.Add(item);
@@ -55,7 +78,7 @@ namespace Scripts.Model.Data
 
         private void AddToStack(string id, int value)
         {
-            var isFull = inventory.Count >= CoreGameConfigs.ConfigsInstance.Player.InventorySize;
+            var isFull = inventory.Count >= configsProvider.CoreGameConfigs.Player.InventorySize;
             var item = GetItem(id);
             if (item == null)
             {
@@ -70,7 +93,7 @@ namespace Scripts.Model.Data
 
         private void AddNonStack(string id, int value)
         {
-            var itemLasts = CoreGameConfigs.ConfigsInstance.Player.InventorySize - inventory.Count;
+            var itemLasts = configsProvider.CoreGameConfigs.Player.InventorySize - inventory.Count;
             value = Mathf.Min(itemLasts, value);
 
             for (var i = 0; i < value; i++)
@@ -82,7 +105,7 @@ namespace Scripts.Model.Data
 
         public void Remove(string id, int value)
         {
-            var itemDef = CoreGameConfigs.ConfigsInstance.Items.Get(id);
+            var itemDef = configsProvider.CoreGameConfigs.Items.Get(id);
             if (itemDef.IsVoid) return;
 
             if (itemDef.HasTag(ItemTag.Stackable))
@@ -143,7 +166,7 @@ namespace Scripts.Model.Data
 
         public bool IsEnough(params ItemWithCount[] items)
         {
-            var joined = new Dictionary<string, int>();
+            Dictionary<string, int> joined = new Dictionary<string, int>();
 
             foreach (var item in items)
             {
@@ -164,12 +187,12 @@ namespace Scripts.Model.Data
 
         public void LoadData(GameData gameData)
         {
-            throw new NotImplementedException();
+            inventory = gameData.Inventory;
         }
 
         public void SaveData(ref GameData gameData)
         {
-            throw new NotImplementedException();
+            gameData.Inventory = inventory;
         }
     }
 }
