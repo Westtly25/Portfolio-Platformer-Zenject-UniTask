@@ -42,7 +42,7 @@ namespace DataSakura.Runtime.Utilities
 
         public async UniTask BeginLoading(ILoadUnit loadUnit, bool skipExceptionThrow = false)
         {
-            var isError = true;
+            bool isError = true;
 
             try
             {
@@ -72,18 +72,21 @@ namespace DataSakura.Runtime.Utilities
         {
             var isError = true;
 
-            try {
+            try
+            {
                 OnLoadingBegin(loadUnit);
                 await loadUnit.Load(param);
                 isError = false;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Debug.Log(e);
 
                 if (!skipExceptionThrow)
                     throw;
             }
-            finally {
+            finally
+            {
                 await OnLoadingFinish(loadUnit, isError);
             }
         }
