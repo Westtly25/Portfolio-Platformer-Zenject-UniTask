@@ -1,6 +1,6 @@
 using System;
 
-namespace Scripts.Utils.Disposables
+namespace Scripts.Utilities.Disposables
 {
     public class ActionDisposable : IDisposable
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using System.Linq;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine.Events;
 
 namespace Scripts.Components.ColliderBased

@@ -1,5 +1,5 @@
 using Scripts.Components.Health;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 
 namespace Scripts.Creatures.Mobs.Boss

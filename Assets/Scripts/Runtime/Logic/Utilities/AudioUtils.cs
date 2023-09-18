@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scripts.Utils
+namespace Scripts.Utilities
 {
     //TODO Create Audio Service and Inject
     public class AudioUtils

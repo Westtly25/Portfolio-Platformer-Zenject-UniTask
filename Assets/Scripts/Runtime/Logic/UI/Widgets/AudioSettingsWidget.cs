@@ -1,5 +1,5 @@
 using Scripts.Model.Data.Properties;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,41 +7,41 @@ namespace Scripts.UI.Widgets
 {
     public class AudioSettingsWidget : MonoBehaviour
     {
-        [SerializeField] private Slider _slider;
-        [SerializeField] private Text _value;
+        [SerializeField]
+        private Slider slider;
+        [SerializeField]
+        private Text value;
 
-        private FloatPersistentProperty _model;
+        private FloatPersistentProperty model;
 
-        private readonly CompositeDisposable _trash = new CompositeDisposable();
+        private readonly CompositeDisposable trash = new();
 
-        private void Start()
-        {
-            _trash.Retain(_slider.onValueChanged.Subscribe(OnSliderValueChanged));
-        }
+        private void Start() =>
+            trash.Retain(slider.onValueChanged.Subscribe(OnSliderValueChanged));
 
         public void SetModel(FloatPersistentProperty model)
         {
-            _model = model;
-            _trash.Retain(model.Subscribe(OnValueChanged));
+            this.model = model;
+            trash.Retain(model.Subscribe(OnValueChanged));
             OnValueChanged(model.Value, model.Value);
         }
 
         private void OnSliderValueChanged(float value)
         {
-            _model.Value = value;
+            model.Value = value;
         }
 
         private void OnValueChanged(float newValue, float oldValue)
         {
             var textValue = Mathf.Round(newValue * 100);
-            _value.text = textValue.ToString();
+            value.text = textValue.ToString();
 
-            _slider.normalizedValue = newValue;
+            slider.normalizedValue = newValue;
         }
 
         private void OnDestroy()
         {
-            _trash.Dispose();
+            trash.Dispose();
         }
     }
 }

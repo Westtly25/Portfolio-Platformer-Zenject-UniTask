@@ -1,5 +1,5 @@
 using Scripts.Model;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

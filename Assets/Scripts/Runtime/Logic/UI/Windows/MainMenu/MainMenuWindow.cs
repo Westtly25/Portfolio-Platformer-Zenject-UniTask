@@ -1,6 +1,6 @@
 using System;
 using Scripts.UI.LevelsLoader;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 
 namespace Scripts.UI.MainMenu

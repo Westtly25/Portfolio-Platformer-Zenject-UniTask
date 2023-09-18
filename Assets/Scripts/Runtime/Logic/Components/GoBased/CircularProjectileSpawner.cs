@@ -1,6 +1,6 @@
 using System.Collections;
 using Scripts.Creatures.Weapons;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 
 namespace Scripts.Components.GoBased

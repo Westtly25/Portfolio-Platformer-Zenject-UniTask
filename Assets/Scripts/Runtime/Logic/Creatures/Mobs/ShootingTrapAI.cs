@@ -1,5 +1,5 @@
 using UnityEngine;
-using Scripts.Utils;
+using Scripts.Utilities;
 using Scripts.Animations;
 using Scripts.Components.ColliderBased;
 

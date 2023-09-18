@@ -32,7 +32,7 @@ namespace Scripts.UI.Hud
 
         private void Update()
         {
-            Utils.Cooldown cooldown = session.PerksModel.Cooldown;
+            Utilities.Cooldown cooldown = session.PerksModel.Cooldown;
             cooldownImage.fillAmount = cooldown.RemainingTime / cooldown.Value;
         }
     }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Scripts.Utils
+namespace Scripts.Utilities
 {
     public class Lock
     {

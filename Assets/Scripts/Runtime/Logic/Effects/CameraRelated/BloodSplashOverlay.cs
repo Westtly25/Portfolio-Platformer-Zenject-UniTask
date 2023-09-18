@@ -1,6 +1,6 @@
 using UnityEngine;
 using Scripts.Model;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using Scripts.Model.Definitions.Player;
 
 namespace Scripts.Effects.CameraRelated

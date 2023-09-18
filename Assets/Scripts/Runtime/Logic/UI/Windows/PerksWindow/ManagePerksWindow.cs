@@ -4,7 +4,7 @@ using Scripts.Model.Definitions;
 using Scripts.Model.Definitions.Localization;
 using Scripts.Model.Definitions.Repositories;
 using Scripts.UI.Widgets;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 using UnityEngine.UI;
 

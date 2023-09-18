@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Scripts.Utils.Disposables
+namespace Scripts.Utilities.Disposables
 {
     public class CompositeDisposable : IDisposable
     {

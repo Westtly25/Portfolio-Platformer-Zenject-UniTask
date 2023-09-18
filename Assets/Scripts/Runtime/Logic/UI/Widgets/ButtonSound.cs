@@ -1,5 +1,5 @@
 using Scripts.Components.Audio;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using Scripts.Model.Definitions;
 using Scripts.Model.Data.Properties;
 using Scripts.Model.Definitions.Repositories.Items;

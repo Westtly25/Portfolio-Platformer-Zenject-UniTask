@@ -1,5 +1,5 @@
 using Scripts.Components.Health;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 
 namespace Scripts.Components

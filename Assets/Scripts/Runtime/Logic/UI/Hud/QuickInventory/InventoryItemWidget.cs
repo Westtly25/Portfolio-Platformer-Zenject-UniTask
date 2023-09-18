@@ -3,7 +3,7 @@ using Scripts.Model.Data;
 using Scripts.Model.Definitions;
 using Scripts.Model.Definitions.Repositories.Items;
 using Scripts.UI.Widgets;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 using UnityEngine.UI;
 

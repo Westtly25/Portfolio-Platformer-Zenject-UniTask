@@ -1,8 +1,8 @@
 using System;
 using Scripts.Model.Data.Properties;
 using Scripts.Model.Definitions;
-using Scripts.Utils;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities;
+using Scripts.Utilities.Disposables;
 
 namespace Scripts.Model.Data
 {

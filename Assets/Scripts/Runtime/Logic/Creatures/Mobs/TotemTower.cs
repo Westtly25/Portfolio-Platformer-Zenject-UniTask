@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scripts.Components.Health;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 
 namespace Scripts.Creatures.Mobs

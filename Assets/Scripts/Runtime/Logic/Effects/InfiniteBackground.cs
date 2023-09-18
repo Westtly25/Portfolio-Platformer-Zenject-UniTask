@@ -1,4 +1,4 @@
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 
 namespace Scripts.Effects
@@ -63,7 +63,7 @@ namespace Scripts.Effects
 
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected() =>
-            GizmosUtils.DrawBounds(allBounds, Color.magenta);
+            GizmosUtilities.DrawBounds(allBounds, Color.magenta);
 #endif
     }
 }

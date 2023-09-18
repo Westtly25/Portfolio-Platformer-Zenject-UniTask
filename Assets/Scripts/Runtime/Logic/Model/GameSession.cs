@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 using Scripts.Model.Data;
 using Scripts.Model.Models;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using Scripts.Model.Definitions.Player;

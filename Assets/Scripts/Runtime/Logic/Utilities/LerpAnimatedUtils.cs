@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Scripts.Utils
+namespace Scripts.Utilities
 {
     public static class LerpAnimatedUtils
     {

@@ -2,8 +2,8 @@ using Scripts.Model;
 using Scripts.Model.Definitions;
 using Scripts.Model.Definitions.Player;
 using Scripts.UI.Widgets;
-using Scripts.Utils;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 using Zenject;
 

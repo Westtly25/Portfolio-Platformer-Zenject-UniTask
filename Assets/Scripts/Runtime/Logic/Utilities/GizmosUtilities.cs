@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Scripts.Utils
+namespace Scripts.Utilities
 {
-    public class GizmosUtils
+    public class GizmosUtilities
     {
         public static void DrawBounds(Bounds bounds, Color color)
         {

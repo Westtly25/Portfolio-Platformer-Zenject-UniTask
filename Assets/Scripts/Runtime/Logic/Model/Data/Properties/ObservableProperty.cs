@@ -1,5 +1,5 @@
 using System;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 
 namespace Scripts.Model.Data.Properties

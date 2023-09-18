@@ -1,5 +1,5 @@
 using System.Collections;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

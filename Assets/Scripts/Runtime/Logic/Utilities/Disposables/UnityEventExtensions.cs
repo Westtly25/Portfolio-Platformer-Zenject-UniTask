@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Events;
 
-namespace Scripts.Utils.Disposables
+namespace Scripts.Utilities.Disposables
 {
     public static class UnityEventExtensions
     {

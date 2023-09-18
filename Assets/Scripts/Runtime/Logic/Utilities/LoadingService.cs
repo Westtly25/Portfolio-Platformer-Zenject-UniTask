@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 
 namespace DataSakura.Runtime.Utilities
 {
@@ -22,7 +22,7 @@ namespace DataSakura.Runtime.Utilities
 
     public sealed class LoadingService
     {
-        public readonly CompositeDisposable Disposable = new();
+        public readonly CompositeDisposable disposables = new();
 
         private void OnLoadingBegin(object unit)
         {
@@ -64,7 +64,7 @@ namespace DataSakura.Runtime.Utilities
 
         public async UniTask BeginLoading(IDisposableLoadUnit unit, bool skipExceptionThrow = false)
         {
-            Disposable.Retain(unit);
+            disposables.Retain(unit);
             await BeginLoading((ILoadUnit)unit, skipExceptionThrow);
         }
 
@@ -90,7 +90,7 @@ namespace DataSakura.Runtime.Utilities
 
         public async UniTask BeginLoading<T>(IDisposableLoadUnit<T> unit, T param, bool skipExceptionThrow = false)
         {
-            Disposable.Retain(unit);
+            disposables.Retain(unit);
             await BeginLoading((ILoadUnit<T>)unit, param, skipExceptionThrow);
         }
 

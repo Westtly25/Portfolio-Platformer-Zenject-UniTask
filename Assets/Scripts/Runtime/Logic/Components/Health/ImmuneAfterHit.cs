@@ -1,5 +1,5 @@
 using System.Collections;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 
 namespace Scripts.Components.Health

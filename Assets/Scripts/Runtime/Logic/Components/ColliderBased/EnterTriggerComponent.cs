@@ -1,4 +1,4 @@
-﻿using Scripts.Utils;
+﻿using Scripts.Utilities;
 using UnityEngine;
 
 namespace Scripts.Components.ColliderBased

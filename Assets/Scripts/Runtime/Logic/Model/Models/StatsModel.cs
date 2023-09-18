@@ -3,7 +3,7 @@ using Scripts.Model.Data;
 using Scripts.Model.Data.Properties;
 using Scripts.Model.Definitions;
 using Scripts.Model.Definitions.Player;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 
 namespace Scripts.Model.Models
 {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Scripts.Model;
 using Scripts.Model.Data;
 using Scripts.UI.Widgets;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 
 namespace Scripts.UI.Hud.QuickInventory

@@ -1,5 +1,5 @@
 ﻿using System;
-using Scripts.Utils;
+using Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 

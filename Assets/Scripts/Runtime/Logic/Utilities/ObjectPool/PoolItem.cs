@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Scripts.Utils.ObjectPool
+namespace Scripts.Utilities.ObjectPool
 {
     public class PoolItem : MonoBehaviour
     {

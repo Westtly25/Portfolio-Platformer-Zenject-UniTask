@@ -1,7 +1,7 @@
 using System;
 using UnityEditor;
 
-namespace Scripts.Utils.Editor
+namespace Scripts.Utilities.Editor
 {
     public static class SerializedPropertyExtensions
     {

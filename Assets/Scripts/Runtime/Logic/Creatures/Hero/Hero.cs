@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Scripts.Model;
-using Scripts.Utils;
+using Scripts.Utilities;
 using System.Collections;
 using Scripts.Components;
 using Scripts.Model.Data;

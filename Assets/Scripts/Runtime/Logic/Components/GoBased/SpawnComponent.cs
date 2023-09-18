@@ -1,6 +1,6 @@
 using UnityEngine;
-using Scripts.Utils;
-using Scripts.Utils.ObjectPool;
+using Scripts.Utilities;
+using Scripts.Utilities.ObjectPool;
 
 namespace Scripts.Components.GoBased
 {

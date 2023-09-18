@@ -1,6 +1,6 @@
 using Scripts.Components.Health;
-using Scripts.Utils;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 
 namespace Scripts.UI.Widgets

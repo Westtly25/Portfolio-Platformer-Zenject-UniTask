@@ -2,7 +2,7 @@ using Scripts.Model;
 using Scripts.Model.Definitions;
 using Scripts.Model.Definitions.Player;
 using Scripts.UI.Widgets;
-using Scripts.Utils.Disposables;
+using Scripts.Utilities.Disposables;
 using UnityEngine;
 using UnityEngine.UI;
 

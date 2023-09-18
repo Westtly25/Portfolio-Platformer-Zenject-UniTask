@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Scripts.Utils
+namespace Scripts.Utilities
 {
     public static class WindowUtils
     {

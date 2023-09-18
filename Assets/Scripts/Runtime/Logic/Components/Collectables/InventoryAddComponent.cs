@@ -1,5 +1,5 @@
 using UnityEngine;
-using Scripts.Utils;
+using Scripts.Utilities;
 using Scripts.Model.Data;
 using Scripts.Model.Definitions;
 using Scripts.Model.Definitions.Repositories.Items;

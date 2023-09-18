@@ -1,5 +1,5 @@
 using UnityEngine;
-using Scripts.Utils;
+using Scripts.Utilities;
 using Scripts.Components.GoBased;
 using Scripts.Components.ColliderBased;
 
