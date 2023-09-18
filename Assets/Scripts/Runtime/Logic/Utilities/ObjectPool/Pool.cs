@@ -5,8 +5,9 @@ namespace Scripts.Utilities.ObjectPool
 {
     public class Pool : MonoBehaviour
     {
-        private readonly Dictionary<int, Queue<PoolItem>> _items = new Dictionary<int, Queue<PoolItem>>();
+        private readonly Dictionary<int, Queue<PoolItem>> poolList = new();
 
+        //TODO
         private static Pool _instance;
 
         public static Pool Instance
@@ -46,10 +47,10 @@ namespace Scripts.Utilities.ObjectPool
 
         private Queue<PoolItem> RequireQueue(int id)
         {
-            if (!_items.TryGetValue(id, out var queue))
+            if (!poolList.TryGetValue(id, out var queue))
             {
                 queue = new Queue<PoolItem>();
-                _items.Add(id, queue);
+                poolList.Add(id, queue);
             }
 
             return queue;

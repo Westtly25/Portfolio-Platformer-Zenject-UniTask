@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Events;
 
 namespace Scripts.Components
@@ -7,37 +7,37 @@ namespace Scripts.Components
     public class ShowTargetComponent : MonoBehaviour
     {
         [SerializeField] private Transform target;
-        [SerializeField] private float _delay = 0.5f;
-        [SerializeField] private UnityEvent _onDelay;
+        [SerializeField] private float delay = 0.5f;
+        [SerializeField] private UnityEvent onDelay;
 
-        [SerializeField] private ShowTargetController _controller;
+        [SerializeField] private ShowTargetController controller;
 
-        private Coroutine _coroutine;
+        private Coroutine coroutine;
 
         private void OnValidate()
         {
-            if (_controller == null)
+            if (controller == null)
             {
-                _controller = FindObjectOfType<ShowTargetController>();
+                controller = FindObjectOfType<ShowTargetController>();
             }
         }
 
         public void Play()
         {
-            _controller.SetPosition(target.position);
-            _controller.SetState(true);
+            controller.SetPosition(target.position);
+            controller.SetState(true);
 
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
-            _coroutine = StartCoroutine(WaitAndReturn());
+            if (coroutine != null)
+                StopCoroutine(coroutine);
+            coroutine = StartCoroutine(WaitAndReturn());
         }
 
         private IEnumerator WaitAndReturn()
         {
-            yield return new WaitForSeconds(_delay);
+            yield return new WaitForSeconds(delay);
 
-            _onDelay?.Invoke();
-            _controller.SetState(false);
+            onDelay?.Invoke();
+            controller.SetState(false);
         }
     }
 }

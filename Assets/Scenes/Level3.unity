@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: a3ffbba7442accf4ba76dffefa361a58,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 5750d44b14df2404f828920ec1f7ea77,
     type: 2}
 --- !u!196 &4
@@ -503,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    _inventory:
+    inventory:
       inventory: []
     Hp:
       _value: 0
@@ -771,6 +772,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputTimeToLive: 0
   cheats: []
+  _currentInput: 
+  _inputTime: 0
 --- !u!114 &124267952
 MonoBehaviour:
   m_ObjectHideFlags: 0

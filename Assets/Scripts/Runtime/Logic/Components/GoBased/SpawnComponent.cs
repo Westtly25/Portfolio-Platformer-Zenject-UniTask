@@ -19,13 +19,13 @@ namespace Scripts.Components.GoBased
 
         public GameObject SpawnInstance()
         {
-            var targetPosition = target.position;
+            Vector3 targetPosition = target.position;
 
-            var instance = usePool
+            GameObject instance = usePool
                 ? Pool.Instance.Get(prefab, targetPosition)
                 : SpawnUtils.Spawn(prefab, targetPosition);
 
-            var scale = target.lossyScale;
+            Vector3 scale = target.lossyScale;
             instance.transform.localScale = scale;
             instance.SetActive(true);
             return instance;
